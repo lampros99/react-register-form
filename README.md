@@ -3,6 +3,10 @@
 A simple and elegant **multi-step registration form** built with React.  
 Users can fill out personal and address information in separate steps, review their details, and submit the form with validation and success notification.
 
+## 🌐 Live Demo
+[View the live form here](https://lampros99.github.io/react-register-form/)
+
+
 ## 🚀 Features
 - Multi-step form navigation (Next / Previous)
 - Required field validation before progressing
