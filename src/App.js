@@ -26,35 +26,35 @@ function Steps() {
     city: "",
   });
 
-  function handleNext() {
-    if (step === 1) {
-      if (!formData.firstName || !formData.lastName || !formData.email) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-    }
-    if (step === 2) {
-      if (!formData.street || !formData.city) {
-        alert("Please fill in all required fields.");
-        return;
-      }
-    }
-    if (step < 3) setStep((s) => s + 1);
-  }
+  // function handleNext() {
+  //   if (step === 1) {
+  //     if (!formData.firstName || !formData.lastName || !formData.email) {
+  //       alert("Please fill in all required fields.");
+  //       return;
+  //     }
+  //   }
+  //   if (step === 2) {
+  //     if (!formData.street || !formData.city) {
+  //       alert("Please fill in all required fields.");
+  //       return;
+  //     }
+  //   }
+  //   if (step < 3) setStep((s) => s + 1);
+  // }
 
-  function handlePrevious() {
-    if (step > 1) setStep((s) => s - 1);
-  }
+  // function handlePrevious() {
+  //   if (step > 1) setStep((s) => s - 1);
+  // }
 
-  function handleSubmit() {
-    console.log("Submitted data:", formData);
+  // function handleSubmit() {
+  //   console.log("Submitted data:", formData);
 
-    toast.success("Registration Successful!", {
-      position: "top-center",
-      autoClose: 2000,
-    });
-    setTimeout(() => setIsOpen(false), 2500);
-  }
+  //   toast.success("Registration Successful!", {
+  //     position: "top-center",
+  //     autoClose: 2000,
+  //   });
+  //   setTimeout(() => setIsOpen(false), 2500);
+  // }
 
   return (
     <div className="steps-container">
@@ -70,25 +70,10 @@ function Steps() {
             <div className={`${step >= 3 ? "active" : ""}`}>3</div>
           </div>
 
-          {step === 1 && <UserInformation formData={formData} setFormData={setFormData} />}
-          {step === 2 && <Address formData={formData} setFormData={setFormData} />}
-          {step === 3 && <Confirmation formData={formData} />}
+          {step === 1 && <UserInformation formData={formData} setFormData={setFormData} onNext={() => setStep((s) => s + 1)} />}
+          {step === 2 && <Address formData={formData} setFormData={setFormData} onNext={() => setStep((s) => + 3)} onPrevious={() => setStep((s) => s - 1)} />}
+          {step === 3 && <Confirmation formData={formData} onPrevious={() => setStep((s) => s - 1)} onSubmit={() => { toast.success("Registration Successful!"); setIsOpen(false);}} />}
 
-          <div className="buttons">
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handlePrevious}
-              disabled={step === 1}
-            >
-              Previous
-            </button>
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={step === 3 ? handleSubmit : handleNext}
-            >
-              {step === 3 ? "Submit" : "Next"}
-            </button>
-          </div>
         </div>
       )}
     </div>

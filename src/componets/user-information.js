@@ -1,29 +1,53 @@
+import { useForm } from "react-hook-form";
+import '../index.css'
 
+function UserInformation({ formData, setFormData, onNext }) {
 
-function UserInformation({ formData, setFormData }) {
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    defaultValues: formData,
+  });
+
+  const onSubmit = (data) => {
+    setFormData({ ...formData, ...data });
+    onNext();
+  }; 
+  
+
   return (
-    <div>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2>User Information</h2>
+    <div className="input-group">
       <input
         placeholder="First Name"
-        value={formData.firstName}
-        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-        required
+        {...register("firstName", { required: "First name is required"})}
       />
+      {errors.firstName && <p className="error">{errors.firstName.message}</p>}
+      </div>
+      <div className="input-group">
       <input
         placeholder="Last Name"
-        value={formData.lastName}
-        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-        required
+        {...register("lastName", { required: "Last name is required" })}
       />
+      {errors.lastName && <p className="error">{errors.lastName.message}</p>}
+      </div>
+      <div className="input-group">
       <input
         type="email"
         placeholder="Email"
-        value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        required
+        {...register("email", {required: "Email is required",
+          pattern: {value: /^\S+@\S+\.\S+$/, message: "Invalid email"}
+        })}
       />
+      {errors.email && <p className="error">{errors.email.message}</p>}
     </div>
+    <div className="buttons">
+       <button type="submit" className="button">Next</button>
+      </div>
+    </form>
   );
 }
 

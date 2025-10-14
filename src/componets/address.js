@@ -1,22 +1,43 @@
+import { useForm } from "react-hook-form";
 
+function Address({ formData, setFormData, onNext, onPrevious }) {
+  const {
+    register, 
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: formData,
+  });
 
-function Address({ formData, setFormData }) {
+  const onSubmit = (data) => {
+    setFormData({ ...formData, ...data});
+    onNext();
+  }
+
   return (
-    <div>
-      <h2>Address</h2>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h2>Address</h2> 
+      <div className="input-group">
       <input
         placeholder="Street"
-        value={formData.street}
-        onChange={(e) => setFormData({ ...formData, street: e.target.value })}
-        required
-      />
+        {...register("street", { required: "Street is required" })}
+        />
+        {errors.street && <p className="error">{errors.street.message}</p>}
+      </div>
+
+      <div className="input-group">
       <input
         placeholder="City"
-        value={formData.city}
-        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-        required
+        {...register("city", { required: "City is required" })}
       />
-    </div>
+      {errors.city && <p className="error">{errors.city.message}</p>}
+      </div>
+    
+      <div className="buttons">
+        <button type="button" onClick={onPrevious}>Previous</button>
+        <button type="submit" className="button" >Next</button>
+      </div>
+    </form>
   );
 }
 

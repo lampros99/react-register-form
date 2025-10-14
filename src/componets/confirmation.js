@@ -1,5 +1,5 @@
 
-function Confirmation({ formData }) {
+function Confirmation({ formData, onPrevious, onSubmit }) {
   return (
     <div>
       <h2>Confirmation</h2>
@@ -14,6 +14,10 @@ function Confirmation({ formData }) {
         <h3>Address</h3>
         <p><strong>Street:</strong> {formData.street}</p>
         <p><strong>City:</strong> {formData.city}</p>
+      </div>
+        <div className="buttons">
+        <button type="button" className="button" onClick={onPrevious}>Previous</button>
+        <button type="button" className="button" onClick={onSubmit}>Submit</button>
       </div>
     </div>
   );
