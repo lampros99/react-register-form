@@ -42,7 +42,7 @@ function Steps() {
       sx={{
         position: "relative",
         width: "100%",
-        maxWidth: { xs: "95%", sm: 600, md: 900, lg: 1100 },
+        maxWidth: { xs: "95%", sm: 600, md: 900, lg: 600 },
       }}
     >
       <IconButton
@@ -57,8 +57,8 @@ function Steps() {
           sx={{
             p: { xs: 2, sm: 3, md: 5 },
             borderRadius: 3,
-            boxShadow: 3,
-            bgcolor: "background.paper",
+            boxShadow: 4,
+            bgcolor: "#f7f7f7",
           }}
         >
           <Box display="flex" justifyContent="center" gap={2} mb={3}>
