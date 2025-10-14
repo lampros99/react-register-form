@@ -4,14 +4,24 @@ import Address from "./componets/address";
 import Confirmation from "./componets/confirmation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Box, IconButton, Paper } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
- 
 export default function App() {
   return (
-    <div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        bgcolor: "background.#7950f2",
+        px: 2,
+      }}
+    >
       <Steps />
       <ToastContainer position="top-center" autoClose={2000} />
-    </div>
+    </Box>
   );
 }
 
@@ -24,58 +34,85 @@ function Steps() {
     email: "",
     street: "",
     city: "",
+    phoneNumber: "",
   });
 
-  // function handleNext() {
-  //   if (step === 1) {
-  //     if (!formData.firstName || !formData.lastName || !formData.email) {
-  //       alert("Please fill in all required fields.");
-  //       return;
-  //     }
-  //   }
-  //   if (step === 2) {
-  //     if (!formData.street || !formData.city) {
-  //       alert("Please fill in all required fields.");
-  //       return;
-  //     }
-  //   }
-  //   if (step < 3) setStep((s) => s + 1);
-  // }
-
-  // function handlePrevious() {
-  //   if (step > 1) setStep((s) => s - 1);
-  // }
-
-  // function handleSubmit() {
-  //   console.log("Submitted data:", formData);
-
-  //   toast.success("Registration Successful!", {
-  //     position: "top-center",
-  //     autoClose: 2000,
-  //   });
-  //   setTimeout(() => setIsOpen(false), 2500);
-  // }
-
   return (
-    <div className="steps-container">
-      <button className="close" onClick={() => setIsOpen((is) => !is)}>
-        &times;
-      </button>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        maxWidth: { xs: "95%", sm: 600, md: 900, lg: 1100 },
+      }}
+    >
+      <IconButton
+        onClick={() => setIsOpen((is) => !is)}
+        sx={{ position: "absolute", top: 8, right: 8 }}
+      >
+        <CloseIcon />
+      </IconButton>
 
       {isOpen && (
-        <div className="steps">
-          <div className="numbers">
-            <div className={`${step >= 1 ? "active" : ""}`}>1</div>
-            <div className={`${step >= 2 ? "active" : ""}`}>2</div>
-            <div className={`${step >= 3 ? "active" : ""}`}>3</div>
-          </div>
+        <Paper
+          sx={{
+            p: { xs: 2, sm: 3, md: 5 },
+            borderRadius: 3,
+            boxShadow: 3,
+            bgcolor: "background.paper",
+          }}
+        >
+          <Box display="flex" justifyContent="center" gap={2} mb={3}>
+            {[1, 2, 3].map((num) => (
+              <Box
+                key={num}
+                sx={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  bgcolor: step >= num ? "#7950f2" : "grey.300",
+                  color: step >= num ? "#fff" : "#000",
+                  fontWeight: "bold",
+                }}
+              >
+                {num}
+              </Box>
+            ))}
+          </Box>
 
-          {step === 1 && <UserInformation formData={formData} setFormData={setFormData} onNext={() => setStep((s) => s + 1)} />}
-          {step === 2 && <Address formData={formData} setFormData={setFormData} onNext={() => setStep((s) => + 3)} onPrevious={() => setStep((s) => s - 1)} />}
-          {step === 3 && <Confirmation formData={formData} onPrevious={() => setStep((s) => s - 1)} onSubmit={() => { toast.success("Registration Successful!"); setIsOpen(false);}} />}
+          {step === 1 && (
+            <UserInformation
+              formData={formData}
+              setFormData={setFormData}
+              onNext={() => setStep((s) => s + 1)
+                
+              }
+            />
+          )}
 
-        </div>
+          {step === 2 && (
+            <Address
+              formData={formData}
+              setFormData={setFormData}
+              onNext={() => setStep((s) => s + 1)} 
+              onPrevious={() => setStep((s) => s - 1)}
+            />
+          )}
+
+          {step === 3 && (
+            <Confirmation
+              formData={formData}
+              onPrevious={() => setStep((s) => s - 1)}
+              onSubmit={() => {
+                toast.success("Registration Successful!");
+                setIsOpen(false);
+              }}
+            />
+          )}
+        </Paper>
       )}
-    </div>
+    </Box>
   );
 }

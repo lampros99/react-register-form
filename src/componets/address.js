@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Box, TextField, Button, Typography } from "@mui/material";
 
 function Address({ formData, setFormData, onNext, onPrevious }) {
   const {
@@ -10,34 +11,39 @@ function Address({ formData, setFormData, onNext, onPrevious }) {
   });
 
   const onSubmit = (data) => {
-    setFormData({ ...formData, ...data});
+    setFormData((prev) => ({ ...prev, ...data}));
     onNext();
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Address</h2> 
-      <div className="input-group">
-      <input
-        placeholder="Street"
+      <Typography variant="h5" mb={2}>Address</Typography>
+      <Box display="flex" flexDirection="column" gap={2}>
+      <TextField
+        label="Street"
         {...register("street", { required: "Street is required" })}
         />
-        {errors.street && <p className="error">{errors.street.message}</p>}
-      </div>
-
-      <div className="input-group">
-      <input
-        placeholder="City"
+     
+      <TextField
+        label="City"
         {...register("city", { required: "City is required" })}
+        error={!!errors.city}
+        helperText={errors.city?.message}
       />
-      {errors.city && <p className="error">{errors.city.message}</p>}
-      </div>
+
+      <TextField
+      label="phone-number"
+      {...register("phoneNumber", { required: "Phone number is required" })}
+      error={!!errors.phoneNumber}
+      helperText={errors.phone?.message}
+      />
     
-      <div className="buttons">
-        <button type="button" onClick={onPrevious}>Previous</button>
-        <button type="submit" className="button" >Next</button>
-      </div>
-    </form>
+      <Box display="flex" gap={2} justifyContent="flex-end" >
+        <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} variant="outlined" onClick={onPrevious}>Previous</Button>
+        <button type="submit" variand="contained" className="button" >Next</button>
+      </Box>
+    </Box>
+  </form>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import '../index.css'
+import { Box, TextField, Button, Typography } from "@mui/material";
 
 function UserInformation({ formData, setFormData, onNext }) {
 
@@ -19,34 +19,32 @@ function UserInformation({ formData, setFormData, onNext }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>User Information</h2>
-    <div className="input-group">
-      <input
-        placeholder="First Name"
+      <Typography variant="h5" mb={2}>User Information</Typography>
+    <Box display="flex" flexDirection="column" gap={2}>
+      <TextField
+      label="First Name"
         {...register("firstName", { required: "First name is required"})}
+        error={!!errors.firstName}
+        helperTest={errors.firstName?.message}
       />
-      {errors.firstName && <p className="error">{errors.firstName.message}</p>}
-      </div>
-      <div className="input-group">
-      <input
-        placeholder="Last Name"
-        {...register("lastName", { required: "Last name is required" })}
+      <TextField
+      label="Last Name"
+        {...register("lastName", { required: "Last name is required"})}
+        error={!!errors.lastName}
+        helperTest={errors.lastName?.message}
       />
-      {errors.lastName && <p className="error">{errors.lastName.message}</p>}
-      </div>
-      <div className="input-group">
-      <input
-        type="email"
-        placeholder="Email"
-        {...register("email", {required: "Email is required",
-          pattern: {value: /^\S+@\S+\.\S+$/, message: "Invalid email"}
+      <TextField
+        label="Email"
+        tupe="email"
+        {...register("email", { 
+          required: "Last name is required", 
+          pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email"}
         })}
+        error={!!errors.email}
+        helperText={errors.email?.message}
       />
-      {errors.email && <p className="error">{errors.email.message}</p>}
-    </div>
-    <div className="buttons">
        <button type="submit" className="button">Next</button>
-      </div>
+      </Box>
     </form>
   );
 }

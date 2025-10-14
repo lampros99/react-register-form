@@ -1,25 +1,31 @@
+import { Box, Typography, Button } from "@mui/material";
 
 function Confirmation({ formData, onPrevious, onSubmit }) {
   return (
-    <div>
-      <h2>Confirmation</h2>
-      <p>Please review your information before submitting.</p>
+    <Box>
+      <Typography variant="h5" mb={2}>Confirmation</Typography>
+      <Typography mb={2}>Please review your information before submitting.</Typography>
 
-      <div className="confirmation-details">
-        <h3>User Information</h3>
-        <p><strong>First Name:</strong> {formData.firstName}</p>
-        <p><strong>Last Name:</strong> {formData.lastName}</p>
-        <p><strong>Email:</strong> {formData.email}</p>
+      <Box mb={2}>
+        <Typography variant="h6">User Information</Typography>
+        <Typography><strong>First Name:</strong> {formData.firstName}</Typography>
+        <Typography><strong>Last Name:</strong> {formData.lastName}</Typography>
+        <Typography><strong>Email:</strong> {formData.email}</Typography>
+        </Box>
 
-        <h3>Address</h3>
-        <p><strong>Street:</strong> {formData.street}</p>
-        <p><strong>City:</strong> {formData.city}</p>
-      </div>
-        <div className="buttons">
-        <button type="button" className="button" onClick={onPrevious}>Previous</button>
-        <button type="button" className="button" onClick={onSubmit}>Submit</button>
-      </div>
-    </div>
+        <Box mb={2}>
+        <Typography variant="h6">Address</Typography>
+        <Typography><strong>Street:</strong> {formData.street}</Typography>
+        <Typography><strong>City:</strong> {formData.city}</Typography>
+        <Typography><strong>Number:</strong> {formData.phoneNumber}</Typography>
+        </Box>
+    
+        <Box display="flex" gap={2} justifyContent="flex-end">
+        <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} variant="outlined" onClick={onPrevious}>Previous</Button>
+        <Button sx={{borderColor: '#7950f2', color: "#e7e7e7", backgroundColor: "#7950f2"}} variant="contained" onClick={onSubmit}>Submit</Button>
+        </Box>
+      
+    </Box>
   );
 }
 
