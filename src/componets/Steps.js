@@ -38,7 +38,7 @@ function Steps() {
           sx={{
             p: { xs: 2, sm: 3, md: 5 },
             borderRadius: 3,
-            boxShadow: 4,
+            boxShadow: 6,
             bgcolor: "#f7f7f7",
           }}
         >

@@ -13,7 +13,7 @@ export default function App() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        bgcolor: "#F5EDED",
+        bgcolor: "#F0F0F0",
         color:"#7250f2",
         px: 2,
       }}
