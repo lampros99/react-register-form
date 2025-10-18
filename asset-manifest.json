@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-register-form/static/css/main.78f8bd96.css",
-    "main.js": "/react-register-form/static/js/main.549ef456.js",
+    "main.js": "/react-register-form/static/js/main.d4be41d9.js",
     "index.html": "/react-register-form/index.html",
     "main.78f8bd96.css.map": "/react-register-form/static/css/main.78f8bd96.css.map",
-    "main.549ef456.js.map": "/react-register-form/static/js/main.549ef456.js.map"
+    "main.d4be41d9.js.map": "/react-register-form/static/js/main.d4be41d9.js.map"
   },
   "entrypoints": [
     "static/css/main.78f8bd96.css",
-    "static/js/main.549ef456.js"
+    "static/js/main.d4be41d9.js"
   ]
 }
