@@ -22,6 +22,8 @@ function Address({ formData, setFormData, onNext, onPrevious }) {
       <TextField
         label="Street"
         {...register("street", { required: "Street is required" })}
+        error={!!errors.street}
+        helperText={errors.street?.message}
         />
      
       <TextField
@@ -32,15 +34,15 @@ function Address({ formData, setFormData, onNext, onPrevious }) {
       />
 
       <TextField
-      label="phone-number"
-      {...register("phoneNumber", { required: "Phone number is required" })}
+      label="Phone Number"
+      {...register("phoneNumber", { required: "Phone is required" })}
       error={!!errors.phoneNumber}
-      helperText={errors.phone?.message}
+      helperText={errors.phoneNumber?.message}
       />
     
       <Box display="flex" gap={2} justifyContent="flex-end" >
         <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} variant="outlined" onClick={onPrevious}>Previous</Button>
-        <button type="submit" variand="contained" className="button" >Next</button>
+        <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} type="submit" variant="outlined" className="button" >Next</Button>
       </Box>
     </Box>
   </form>

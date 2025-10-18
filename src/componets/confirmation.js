@@ -17,12 +17,12 @@ function Confirmation({ formData, onPrevious, onSubmit }) {
         <Typography variant="h6">Address</Typography>
         <Typography><strong>Street:</strong> {formData.street}</Typography>
         <Typography><strong>City:</strong> {formData.city}</Typography>
-        <Typography><strong>Number:</strong> {formData.phoneNumber}</Typography>
+        <Typography><strong>Phone Number:</strong> {formData.phoneNumber}</Typography>
         </Box>
     
         <Box display="flex" gap={2} justifyContent="flex-end">
         <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} variant="outlined" onClick={onPrevious}>Previous</Button>
-        <Button sx={{borderColor: '#7950f2', color: "#e7e7e7", backgroundColor: "#7950f2"}} variant="contained" onClick={onSubmit}>Submit</Button>
+        <Button sx={{borderColor: '#7950f2', color: "#7950f2"}} variant="outlined" onClick={onSubmit}>Submit</Button>
         </Box>
       
     </Box>

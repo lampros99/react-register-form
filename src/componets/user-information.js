@@ -16,34 +16,34 @@ function UserInformation({ formData, setFormData, onNext }) {
     onNext();
   }; 
   
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h5" mb={2}>User Information</Typography>
     <Box display="flex" flexDirection="column" gap={2}>
       <TextField
       label="First Name"
+        
         {...register("firstName", { required: "First name is required"})}
         error={!!errors.firstName}
-        helperTest={errors.firstName?.message}
+        helperText={errors.firstName?.message}
       />
       <TextField
       label="Last Name"
         {...register("lastName", { required: "Last name is required"})}
         error={!!errors.lastName}
-        helperTest={errors.lastName?.message}
+        helperText={errors.lastName?.message}
       />
       <TextField
         label="Email"
-        tupe="email"
+        type="email"
         {...register("email", { 
-          required: "Last name is required", 
+          required: "Email is required", 
           pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email"}
         })}
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-       <button type="submit" className="button">Next</button>
+       <Button sx={{color: "#7950f2", borderColor: "#7950f2"}} variant="outlined" type="submit" className="button">Next</Button>
       </Box>
     </form>
   );
